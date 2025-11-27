@@ -13,6 +13,6 @@
     }
   ],
   "url": "https://github.com/Sollab4/Pause-screen-tips",
-  "manifest": "https://raw.githubusercontent.com/Sollab4/Pause-screen-tips/main/module.json",
+  "manifest": "https://raw.githubusercontent.com/Sollab4/Pause-screen-tips/refs/heads/main/module.json",
   "download": "https://github.com/Sollab4/Pause-screen-tips/archive/refs/heads/main.zip"
 }
