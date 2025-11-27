@@ -1,0 +1,54 @@
+<form>
+  <h2>Liste des conseils</h2>
+
+  <!-- Zone scrollable -->
+  <div id="tips-list" style="max-height: 400px; overflow-y: auto;">
+
+    {{#each tips}}
+      <div class="tip-line" style="display:flex; gap:8px; margin-bottom:8px; align-items:center;">
+        <input type="text"
+               name="tip-{{@index}}"
+               value="{{this}}"
+               style="flex:1; padding:6px; font-size:1rem;">
+        <button type="button"
+                class="delete-tip"
+                style="padding:4px 8px; font-size:0.8rem;">
+          ✕
+        </button>
+      </div>
+    {{/each}}
+
+  </div>
+
+  <!-- Ajouter une ligne -->
+  <button type="button" id="add-tip" style="margin-top:10px;">
+    Ajouter un conseil
+  </button>
+
+  <!-- Bouton enregistrer -->
+  <button type="submit" style="margin-top:20px;">Enregistrer</button>
+</form>
+
+
+<script>
+/* Ajouter un nouveau conseil */
+document.getElementById("add-tip").addEventListener("click", () => {
+  const div = document.createElement("div");
+  div.className = "tip-line";
+  div.style = "display:flex; gap:8px; margin-bottom:8px; align-items:center;";
+
+  div.innerHTML =
+    '<input type="text" name="tip-new-' + Math.random() + '" ' +
+    'style="flex:1; padding:6px; font-size:1rem;">' +
+    '<button type="button" class="delete-tip" style="padding:4px 8px; font-size:0.8rem;">✕</button>';
+
+  document.getElementById("tips-list").appendChild(div);
+});
+
+/* Supprimer un conseil individuel */
+document.addEventListener("click", (ev) => {
+  if (ev.target.classList.contains("delete-tip")) {
+    ev.target.parentElement.remove();
+  }
+});
+</script>
