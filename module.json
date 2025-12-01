@@ -3,7 +3,7 @@
   "id": "pause-screen-tips",
   "title": "Pause Screen Tips",
   "description": "Affiche des conseils pendant la pause, avec éditeur dynamique.",
-  "version": "2.3",
+  "version": "2.3.1",
   "compatibility": { "minimum": "11", "verified": "13" },
   "esmodules": ["main.js"],
   "styles": ["styles.css"],
