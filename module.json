@@ -1,10 +1,12 @@
-
 {
   "id": "pause-screen-tips",
   "title": "Pause Screen Tips",
   "description": "Affiche des conseils pendant la pause, avec éditeur dynamique.",
-  "version": "2.3.2",
-  "compatibility": { "minimum": "11", "verified": "13" },
+  "version": "2.4.0",
+  "compatibility": { 
+    "minimum": "11", 
+    "verified": "13" 
+  },
   "esmodules": ["main.js"],
   "styles": ["styles.css"],
   "authors": [
@@ -13,6 +15,6 @@
     }
   ],
   "url": "https://github.com/Sollab4/Pause-screen-tips",
-  "manifest": "https://raw.githubusercontent.com/Sollab4/Pause-screen-tips/refs/heads/main/module.json",
+  "manifest": "https://raw.githubusercontent.com/Sollab4/Pause-screen-tips/main/module.json",
   "download": "https://github.com/Sollab4/Pause-screen-tips/archive/refs/heads/main.zip"
 }
