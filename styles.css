@@ -1,33 +1,26 @@
-/* --- Overlay principale --- */
+
 #pause-screen-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* Important : ne bloque pas l’interface Foundry */
   pointer-events: none;
-
   display: flex;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 10%;
 }
 
-/* --- Boîte des conseils --- */
 #pause-tip-box {
   background: rgba(0, 0, 0, 0.5);
   padding: 20px 40px;
   border-radius: 12px;
   max-width: 70%;
-
-  /* permet le drag si tu veux l’ajouter */
   pointer-events: auto;
-  cursor: default;
+  cursor: move;
 }
 
-/* --- Texte du conseil --- */
 #pause-tip-text {
   font-size: 1.6em;
   color: white;
@@ -35,11 +28,22 @@
   display: block;
 }
 
-/* --- Champs de texte de l'éditeur --- */
+.tip-line {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
 .tip-line input[type="text"] {
   width: 100% !important;
   flex: 1 1 auto !important;
   font-size: 1rem;
   padding: 6px;
   box-sizing: border-box;
+}
+
+.delete-tip {
+  padding: 4px 8px;
+  font-size: 0.8rem;
 }
