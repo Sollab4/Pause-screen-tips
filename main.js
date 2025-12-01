@@ -1,13 +1,12 @@
-
 class TipsConfig extends FormApplication {
   static get defaultOptions() {
-  return mergeObject(super.defaultOptions, {
-    id: "tips-config",
-    title: "Configuration des Conseils",
-    template: "modules/pause-screen-tips/tips-config.html",
-    width: 700,
-    height: 600,
-    resizable: true
+    return mergeObject(super.defaultOptions, {
+      id: "tips-config",
+      title: "Configuration des Conseils",
+      template: "modules/pause-screen-tips/tips-config.html",
+      width: 700,
+      height: 600,
+      resizable: true
     });
   }
 
@@ -58,7 +57,7 @@ Hooks.on("pauseGame", function (paused) {
 
 function showTips() {
   const overlay = document.createElement("div");
-  overlay.id = "loading-screen-overlay";
+  overlay.id = "pause-screen-overlay";   // <-- corrigé
   overlay.innerHTML = `
     <div id="pause-tip-box"><span id="pause-tip-text"></span></div>
   `;
@@ -67,7 +66,7 @@ function showTips() {
 }
 
 function hideTips() {
-  const el = document.getElementById("loading-screen-overlay");
+  const el = document.getElementById("pause-screen-overlay"); // <-- corrigé
   if (el) el.remove();
   if (tipInterval) clearInterval(tipInterval);
 }
@@ -75,18 +74,7 @@ function hideTips() {
 function cycleTips() {
   const tips = game.settings.get("pause-screen-tips", "tips");
   const delay = game.settings.get("pause-screen-tips", "delay");
-  const tipBox = document.getElementById("pause-screen-text");
+  const tipBox = document.getElementById("pause-tip-text"); // <-- corrigé
 
   function updateTip() {
-    const tip = tips[Math.floor(Math.random() * tips.length)];
-    tipBox.textContent = tip;
-    game.socket.emit("module.pause-screen-tips", tip);
-  }
-
-  updateTip();
-  tipInterval = setInterval(updateTip, delay);
-
-  game.socket.on("module.pause-screen-tips", (tip) => {
-    tipBox.textContent = tip;
-  });
-}
+    const tip = tips[Math.floor(Math]()
