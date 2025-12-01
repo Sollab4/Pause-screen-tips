@@ -1,54 +1,41 @@
+
 <form>
   <h2>Liste des conseils</h2>
 
-  <!-- Zone scrollable -->
   <div id="tips-list" style="max-height: 400px; overflow-y: auto;">
-
     {{#each tips}}
-      <div class="tip-line" style="display:flex; gap:8px; margin-bottom:8px; align-items:center;">
-        <input type="text"
-               name="tip-{{@index}}"
-               value="{{this}}"
-               style="flex:1; padding:6px; font-size:1rem;">
-        <button type="button"
-                class="delete-tip"
-                style="padding:4px 8px; font-size:0.8rem;">
-          ✕
-        </button>
+      <div class="tip-line">
+        <input type="text" name="tip-{{@index}}" value="{{this}}">
+        <button type="button" class="delete-tip">✕</button>
       </div>
     {{/each}}
-
   </div>
 
-  <!-- Ajouter une ligne -->
-  <button type="button" id="add-tip" style="margin-top:10px;">
+  <button type="button" id="add-tip" class="add-tip-btn">
     Ajouter un conseil
   </button>
 
-  <!-- Bouton enregistrer -->
-  <button type="submit" style="margin-top:20px;">Enregistrer</button>
+  <button type="submit" class="save-btn">Enregistrer</button>
 </form>
 
-
 <script>
-/* Ajouter un nouveau conseil */
-document.getElementById("add-tip").addEventListener("click", () => {
-  const div = document.createElement("div");
-  div.className = "tip-line";
-  div.style = "display:flex; gap:8px; margin-bottom:8px; align-items:center;";
+Hooks.once("renderTipsConfig", (app, html) => {
 
-  div.innerHTML =
-    '<input type="text" name="tip-new-' + Math.random() + '" ' +
-    'style="flex:1; padding:6px; font-size:1rem;">' +
-    '<button type="button" class="delete-tip" style="padding:4px 8px; font-size:0.8rem;">✕</button>';
+  html.find("#add-tip").on("click", () => {
+    const list = html.find("#tips-list");
 
-  document.getElementById("tips-list").appendChild(div);
-});
+    const div = document.createElement("div");
+    div.className = "tip-line";
+    div.innerHTML = `
+      <input type="text" name="tip-new-${Math.random()}">
+      <button type="button" class="delete-tip">✕</button>
+    `;
+    list.append(div);
+  });
 
-/* Supprimer un conseil individuel */
-document.addEventListener("click", (ev) => {
-  if (ev.target.classList.contains("delete-tip")) {
-    ev.target.parentElement.remove();
-  }
+  html.on("click", ".delete-tip", ev => {
+    ev.currentTarget.parentElement.remove();
+  });
+
 });
 </script>
