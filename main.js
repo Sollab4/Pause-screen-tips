@@ -102,7 +102,7 @@ function makeDraggable(el) {
   el.addEventListener("mousedown", dragMouseDown);
 
   function dragMouseDown(e) {
-    if (e.target !== el) return;
+    if (!el.contains(e.target)) return;
     e.preventDefault();
 
     startX = e.clientX;
