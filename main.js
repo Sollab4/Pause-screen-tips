@@ -4,7 +4,7 @@ class TipsConfig extends FormApplication {
   return mergeObject(super.defaultOptions, {
     id: "tips-config",
     title: "Configuration des Conseils",
-    template: "modules/loading-screen-tips/tips-config.html",
+    template: "modules/pause-screen-tips/tips-config.html",
     width: 700,
     height: 600,
     resizable: true
@@ -13,18 +13,18 @@ class TipsConfig extends FormApplication {
 
   getData() {
     return {
-      tips: game.settings.get("loading-screen-tips", "tips")
+      tips: game.settings.get("pause-screen-tips", "tips")
     };
   }
 
   async _updateObject(event, formData) {
     const tips = Object.values(formData).filter(t => t.trim());
-    await game.settings.set("loading-screen-tips", "tips", tips);
+    await game.settings.set("pause-screen-tips", "tips", tips);
   }
 }
 
 Hooks.once("init", function () {
-  game.settings.register("loading-screen-tips", "tips", {
+  game.settings.register("pause-screen-tips", "tips", {
     name: "Conseils",
     scope: "world",
     config: false,
@@ -32,7 +32,7 @@ Hooks.once("init", function () {
     default: ["Conseil 1", "Conseil 2"]
   });
 
-  game.settings.registerMenu("loading-screen-tips", "tipsMenu", {
+  game.settings.registerMenu("pause-screen-tips", "tipsMenu", {
     name: "Modifier les conseils",
     label: "Ouvrir l’éditeur",
     icon: "fas fa-book",
@@ -40,7 +40,7 @@ Hooks.once("init", function () {
     restricted: true
   });
 
-  game.settings.register("loading-screen-tips", "delay", {
+  game.settings.register("pause-screen-tips", "delay", {
     name: "Délai entre conseils (ms)",
     scope: "world",
     config: true,
@@ -73,20 +73,20 @@ function hideTips() {
 }
 
 function cycleTips() {
-  const tips = game.settings.get("loading-screen-tips", "tips");
-  const delay = game.settings.get("loading-screen-tips", "delay");
-  const tipBox = document.getElementById("loading-screen-tip");
+  const tips = game.settings.get("pause-screen-tips", "tips");
+  const delay = game.settings.get("pause-screen-tips", "delay");
+  const tipBox = document.getElementById("pause-screen-tips");
 
   function updateTip() {
     const tip = tips[Math.floor(Math.random() * tips.length)];
     tipBox.textContent = tip;
-    game.socket.emit("module.loading-screen-tips", tip);
+    game.socket.emit("module.pause-screen-tips", tip);
   }
 
   updateTip();
   tipInterval = setInterval(updateTip, delay);
 
-  game.socket.on("module.loading-screen-tips", (tip) => {
+  game.socket.on("module.pause-screen-tips", (tip) => {
     tipBox.textContent = tip;
   });
 }
