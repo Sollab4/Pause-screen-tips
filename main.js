@@ -60,7 +60,7 @@ function showTips() {
   const overlay = document.createElement("div");
   overlay.id = "loading-screen-overlay";
   overlay.innerHTML = `
-    <div id="tip-box"><span id="loading-screen-tip"></span></div>
+    <div id="pause-tip-box"><span id="pause-tip-text"></span></div>
   `;
   document.body.appendChild(overlay);
   cycleTips();
@@ -75,7 +75,7 @@ function hideTips() {
 function cycleTips() {
   const tips = game.settings.get("pause-screen-tips", "tips");
   const delay = game.settings.get("pause-screen-tips", "delay");
-  const tipBox = document.getElementById("pause-screen-tips");
+  const tipBox = document.getElementById("pause-screen-text");
 
   function updateTip() {
     const tip = tips[Math.floor(Math.random() * tips.length)];
