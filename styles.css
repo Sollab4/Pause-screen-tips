@@ -36,7 +36,7 @@
 }
 
 .tip-line input[type="text"] {
-  width: 100% !important;
+  width: 10000% !important;
   flex: 1 1 auto !important;
   font-size: 1rem;
   padding: 6px;
